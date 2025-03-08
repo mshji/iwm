@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow</title>
+    <style>
+        body {
+            background-color: lightpink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        #playButton {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #slideshow {
+            margin-top: 20px;
+            width: 300px;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            display: none;
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <button id="playButton">🌷</button>
+    <div id="slideshow"></div>
+    
+    <audio id="audio" src="atmiles.mp3"></audio>
+
+    <script>
+        const imageList = ["dog1.jpg", "dog2.jpg", "cat1.jpg", "cat2.jpg", "dog3.jpeg"];
+        const playButton = document.getElementById("playButton");
+        const audio = document.getElementById("audio");
+        const slideshow = document.getElementById("slideshow");
+        
+        playButton.addEventListener("click", () => {
+
+            audio.play();
+            
+            playButton.style.display = "none";
+            slideshow.style.display = "block";
+            let index = 0;
+            
+            function showImage() {
+                slideshow.style.opacity = 0;
+                setTimeout(() => {
+                    slideshow.style.backgroundImage = `url(${imageList[index]})`;
+                    slideshow.style.opacity = 1;
+                    index = (index + 1) % imageList.length; // Loop back to first image
+                    setTimeout(showImage, 2000);
+                }, 1000);
+            }
+            
+            showImage();
+        });
+    </script>
+</body>
+</html>
