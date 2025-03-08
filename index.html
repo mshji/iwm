@@ -14,14 +14,17 @@
             flex-direction: column;
         }
         #playButton {
-            width: 100px;
-            height: 100px;
-            background-color: white;
-            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            background-color: transparent;
             border: none;
             cursor: pointer;
-            font-size: 24px;
-            font-weight: bold;
+            padding: 0;
+        }
+        #playButton img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
         }
         #slideshow {
             margin-top: 20px;
@@ -35,7 +38,9 @@
     </style>
 </head>
 <body>
-    <button id="playButton">🌷</button>
+    <button id="playButton">
+        <img src="cover.jpg" alt="Play Button">
+    </button>
     <div id="slideshow"></div>
     
     <audio id="audio" src="atmiles.mp3"></audio>
@@ -47,9 +52,7 @@
         const slideshow = document.getElementById("slideshow");
         
         playButton.addEventListener("click", () => {
-
             audio.play();
-            
             playButton.style.display = "none";
             slideshow.style.display = "block";
             let index = 0;
